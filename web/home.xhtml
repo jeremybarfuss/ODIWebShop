@@ -11,58 +11,63 @@
     </h:head>
 
     <h:body>
-        <h1>Liste des produits</h1>
-        <h:form>
-            <h:dataTable value="#{productsBean.products}" var="product">
-                <h:column>
-                    <f:facet name="header">
-                        Num
-                    </f:facet>
-                    <h:outputText value="#{product.number}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Nom
-                    </f:facet>
-                    <h:outputText value="#{product.name}" />
-                </h:column>
-                <h:column>
-                    <h:commandButton value="Ajouter">
-                        <f:ajax event="click" render="@form" listener="#{productsBean.addProduct(product)}" />
-                    </h:commandButton>
-                </h:column>
-            </h:dataTable>
-            
-            <h1>Panier</h1>
-            <h:form>
-                <h:dataTable value="#{productsBean.productsInCart}" var="productInCart">
-                    <h:column>
-                        <f:facet name="header">
-                            Num
-                        </f:facet>
-                        <h:outputText value="#{productInCart.product.number}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Nom
-                        </f:facet>
-                        <h:outputText value="#{productInCart.product.name}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Quantite
-                        </f:facet>
-                        <h:outputText value="#{productInCart.quantity}" />
-                        
-                    </h:column>
-                <h:column>
-                    <h:commandButton value="Supprimer">
-                        <f:ajax event="click" render="@form" listener="#{productsBean.deleteProduct(productInCart)}" />
-                    </h:commandButton>
-                </h:column>
-                </h:dataTable>
-            </h:form>
-        </h:form>
+        <ui:composition template="resources/template/mainTemplate.xhtml">	
+
+            <ui:define name="header">WebShop ODI</ui:define>
+
+            <ui:define name="content">	
+                <h1>Liste des produits</h1>
+                <h:form>
+                    <h:dataTable value="#{productsBean.products}" var="product">
+                        <h:column>
+                            <f:facet name="header">
+                                Num
+                            </f:facet>
+                            <h:outputText value="#{product.number}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Nom
+                            </f:facet>
+                            <h:outputText value="#{product.name}" />
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Ajouter">
+                                <f:ajax event="click" render="@form" listener="#{productsBean.addProduct(product)}" />
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+
+                    <h1>Panier</h1>
+                    <h:dataTable value="#{productsBean.productsInCart}" var="productInCart">
+                        <h:column>
+                            <f:facet name="header">
+                                Num
+                            </f:facet>
+                            <h:outputText value="#{productInCart.product.number}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Nom
+                            </f:facet>
+                            <h:outputText value="#{productInCart.product.name}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Quantite
+                            </f:facet>
+                            <h:outputText value="#{productInCart.quantity}" />
+
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Supprimer">
+                                <f:ajax event="click" render="@form" listener="#{productsBean.deleteProduct(productInCart)}" />
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
