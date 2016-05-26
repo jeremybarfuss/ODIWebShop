@@ -18,6 +18,7 @@ import javax.enterprise.context.SessionScoped;
 public class Services implements Serializable {
 
     private Map<Integer, Product> products;
+    
 
     public Services() {
         products = new LinkedHashMap<>();

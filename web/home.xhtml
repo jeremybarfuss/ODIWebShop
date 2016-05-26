@@ -26,7 +26,42 @@
                     </f:facet>
                     <h:outputText value="#{product.name}" />
                 </h:column>
+                <h:column>
+                    <h:commandButton value="Ajouter">
+                        <f:ajax event="click" render="@form" listener="#{productsBean.addProduct(product)}" />
+                    </h:commandButton>
+                </h:column>
             </h:dataTable>
+            
+            <h1>Panier</h1>
+            <h:form>
+                <h:dataTable value="#{productsBean.productsInCart}" var="productInCart">
+                    <h:column>
+                        <f:facet name="header">
+                            Num
+                        </f:facet>
+                        <h:outputText value="#{productInCart.product.number}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Nom
+                        </f:facet>
+                        <h:outputText value="#{productInCart.product.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Quantite
+                        </f:facet>
+                        <h:outputText value="#{productInCart.quantity}" />
+                        
+                    </h:column>
+                <h:column>
+                    <h:commandButton value="Supprimer">
+                        <f:ajax event="click" render="@form" listener="#{productsBean.deleteProduct(productInCart)}" />
+                    </h:commandButton>
+                </h:column>
+                </h:dataTable>
+            </h:form>
         </h:form>
     </h:body>
 </html>
